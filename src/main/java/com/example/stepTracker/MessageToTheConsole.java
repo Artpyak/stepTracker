@@ -1,4 +1,4 @@
-package com.example.stapTracker;
+package com.example.stepTracker;
 
 public class MessageToTheConsole {
 

@@ -1,6 +1,5 @@
-package com.example.stapTracker.panel;
+package com.example.stepTracker.panel;
 
-import java.awt.*;
 import javax.swing.*;
 
 public class Panel {
