@@ -1,53 +1,41 @@
 package com.example.stepTracker;
 
 
+import com.example.stepTracker.messageToTheConsole.MenuMessageTemplateToConsole;
+import com.example.stepTracker.messageToTheConsole.PrintingAnErrorMessage;
+
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
         main.scanningUserData();
-        main.actionDefinition();
     }
 
-    MessageToTheConsole messageToTheConsole = new MessageToTheConsole();
+    MenuMessageTemplateToConsole menuMessageTemplateToConsole = new MenuMessageTemplateToConsole();
     Scanner scanner = new Scanner(System.in);
-    private Integer scanningUserData() {  //проверить на исключения
+
+    private int scanningUserData() {  //проверить на исключения
 
 
-        messageToTheConsole.printMenu();
+        System.out.println(menuMessageTemplateToConsole.getTemplate());
         int userInput = scanner.nextInt();
 
-        while (userInput < 0) {             //обработка некорректного запроса
 
-            messageToTheConsole.printingAnErrorMessage();
-            messageToTheConsole.printMenu();
+        while (userInput < 0 && userInput > 4) {             //обработка некорректного запроса
+            PrintingAnErrorMessage printingAnErrorMessage = new PrintingAnErrorMessage();
+            System.out.println(printingAnErrorMessage.getTemplate());
+            System.out.println(menuMessageTemplateToConsole.getTemplate());
             userInput = scanner.nextInt();
 
         }
-
         return userInput;
     }
 
-    private void actionDefinition() {
-        switch (scanningUserData()) {
-            case 1:
-                Main main = new Main();
-                main.introductionOfSteps();
-            case 2:
-            case 3:
-            case 4:
-        }
-    }
-
-    private void introductionOfSteps() {
-        messageToTheConsole.monthEntryRequest();
-        String month = scanner.nextLine();
-        messageToTheConsole.requestForDayEntry();
-        int day = scanner.nextInt();
-        messageToTheConsole.requestToEnterTheNumberOfSteps();
-        int steps = scanner.nextInt();
+    private void actionMenuSelection(int userInput) {
+       // ActionMenuSelection.getTemplateByCode(userInput).
 
     }
+
 
 }
