@@ -1,16 +1,18 @@
-package com.example.stepTracker;
+package com.example.stepTracker.menuItems.impl;
 
+import com.example.stepTracker.menuItems.MenuItems;
 import com.example.stepTracker.messageToTheConsole.MonthEntryRequest;
 import com.example.stepTracker.messageToTheConsole.RequestForDayEntry;
 import com.example.stepTracker.messageToTheConsole.RequestToEnterTheNumberOfSteps;
 
 import java.util.Scanner;
 
-final class StepsForToday {
-     private class DateAndSteps {
-        public String month;
-        public int day;
-        public int steps;
+public class NumberOfSteps implements MenuItems {
+
+    public class DateAndSteps {
+        String month;
+        int day;
+        int steps;
 
         public DateAndSteps(String month, int day, int steps) {
             this.month = month;
@@ -19,7 +21,8 @@ final class StepsForToday {
         }
     }
 
-    private DateAndSteps introductionOfSteps() {
+    @Override
+    public DateAndSteps getMenuItems() {
         MonthEntryRequest monthEntryRequest = new MonthEntryRequest();
         RequestForDayEntry requestForDayEntry = new RequestForDayEntry();
         RequestToEnterTheNumberOfSteps requestToEnterTheNumberOfSteps = new RequestToEnterTheNumberOfSteps();

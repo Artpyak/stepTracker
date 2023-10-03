@@ -1,12 +1,18 @@
 package com.example.stepTracker;
 
 import com.example.stepTracker.menuItems.*;
+import com.example.stepTracker.menuItems.impl.DailyGoal;
+import com.example.stepTracker.menuItems.impl.Exit;
+import com.example.stepTracker.menuItems.impl.NumberOfSteps;
+import com.example.stepTracker.menuItems.impl.Statistics;
+
+import java.lang.reflect.InvocationTargetException;
 
 public enum ActionMenuSelection {
-    NUMBER_OF_STEPS(0, NumberOfSteps.class),
-    STATISTICS(1, Statistics.class),
-    DAILY_GOAL(2, DailyGoal.class),
-    EXIT(3, Exit.class);
+    NUMBER_OF_STEPS(1, NumberOfSteps.class),
+    STATISTICS(2, Statistics.class),
+    DAILY_GOAL(3, DailyGoal.class),
+    EXIT(4, Exit.class);
 
     private int typeCode;
     private Class<? extends MenuItems> menuItems;
@@ -25,8 +31,8 @@ public enum ActionMenuSelection {
         throw new RuntimeException("Вариант не найден");
     }
 
-    public MenuItems getNumberOfSteps() throws IllegalAccessException, InstantiationException {
-        return menuItems.newInstance();
+    public MenuItems getMenuItemsEnum() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        return menuItems.getDeclaredConstructor().newInstance();
     }
 
 }
