@@ -62,12 +62,13 @@ public class NumberOfSteps implements MenuItems {
     }
 
 
-    public void databaseFilling(Main main) {
+    public void databaseFilling() {
         DateAndStepsInterface myObject = menuItemRetrieval();
         myObject.getMonth();
-        Integer month = Months.valueOf(myObject.getMonth()).ordinal(); //ну тут точно ошибка. тут надо решить как получить стринговове значение одного из перечислений
+
+        /*Integer month = Months.valueOf(myObject.getMonth()).ordinal(); //ну тут точно ошибка. тут надо решить как получить стринговове значение одного из перечислений
         StepTracker stepTrackerMain = main.stepTrackerinMain;
-        stepTrackerMain.monthDataHashMap.get(month); // и это поебень
+        stepTrackerMain.monthDataHashMap.get(month); // и это поебень*/
 
 
     }

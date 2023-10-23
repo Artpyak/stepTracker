@@ -34,7 +34,6 @@ public class Main {
         return userInput;
     }
 
-    public StepTracker stepTrackerinMain = new StepTracker();
 
     private void actionMenuSelection() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Main main = new Main();
