@@ -1,4 +1,4 @@
-package com.example.stepTracker.messageToTheConsole;
+package com.example.stepTracker.messageToTheConsole.impl;
 
 import com.example.stepTracker.messageToTheConsole.ConsoleMessageTemplate;
 

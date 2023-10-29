@@ -14,17 +14,14 @@ public enum Months {
     NOVEMBER(11),
     DECEMBER(12);
     private int typeCode;
-    //private String name1;
+
     Months(int typeCode) {
         this.typeCode = typeCode;
     }
 
-    /*Months(String name) {
-        this.name1 = name;
-    }*/
 
     public static Months getTemplateByCode(int typeCode) {
-        for (Months type : Months.values()){
+        for (Months type : Months.values()) {
             if (type.typeCode == typeCode) {
                 return type;
             }
@@ -32,13 +29,5 @@ public enum Months {
         throw new RuntimeException("Вариант не найден");
     }
 
-    /*public static Months getInstance(String month) {
-        for (Months type : Months.values()) {
-            if (type.name1 == month) {
-                return type;
-            }
-        }
-        throw new RuntimeException("!!!!");
-    }*/
 }
 

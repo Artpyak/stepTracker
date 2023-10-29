@@ -8,7 +8,7 @@ import com.example.stepTracker.menuItems.impl.Statistics;
 
 import java.lang.reflect.InvocationTargetException;
 
-public enum ActionMenuSelection {
+public enum ActionMenuSelection { //Подпункты меню
     NUMBER_OF_STEPS(1, NumberOfSteps.class),
     STATISTICS(2, Statistics.class),
     DAILY_GOAL(3, DailyGoal.class),

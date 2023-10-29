@@ -1,18 +1,15 @@
 package com.example.stepTracker.menuItems.impl;
 
-import com.example.stepTracker.Main;
-import com.example.stepTracker.Months;
-import com.example.stepTracker.StepTracker;
 import com.example.stepTracker.menuItems.MenuItems;
-import com.example.stepTracker.messageToTheConsole.MonthEntryRequest;
-import com.example.stepTracker.messageToTheConsole.RequestForDayEntry;
-import com.example.stepTracker.messageToTheConsole.RequestToEnterTheNumberOfSteps;
+import com.example.stepTracker.messageToTheConsole.impl.MonthEntryRequest;
+import com.example.stepTracker.messageToTheConsole.impl.RequestForDayEntry;
+import com.example.stepTracker.messageToTheConsole.impl.RequestToEnterTheNumberOfSteps;
 
 import java.util.Scanner;
 
 public class NumberOfSteps implements MenuItems {
 
-    public class DateAndSteps implements DateAndStepsInterface {
+    public class DateAndSteps implements DateAndStepsInterface { //Класс для сохранения и передачи: месяца, даты и количества шагов
         String month;
         int day;
         int steps;
@@ -41,12 +38,11 @@ public class NumberOfSteps implements MenuItems {
 
     @Override
     public Object getMenuItems() {
-        //menuItemRetrieval();
         databaseFilling();
         return null; //Исправить поебень с null
     }
 
-    public DateAndSteps menuItemRetrieval() {
+    public DateAndSteps menuItemRetrieval() { //Подпункт меню сканирующий: месяц, дату и шаги. Возвращат объект с данными.
         MonthEntryRequest monthEntryRequest = new MonthEntryRequest();
         RequestForDayEntry requestForDayEntry = new RequestForDayEntry();
         RequestToEnterTheNumberOfSteps requestToEnterTheNumberOfSteps = new RequestToEnterTheNumberOfSteps();
@@ -62,13 +58,10 @@ public class NumberOfSteps implements MenuItems {
     }
 
 
-    public void databaseFilling() {
+    public void databaseFilling() { //Определяет месяц для заполнения hashMap
         DateAndStepsInterface myObject = menuItemRetrieval();
         myObject.getMonth();
 
-        /*Integer month = Months.valueOf(myObject.getMonth()).ordinal(); //ну тут точно ошибка. тут надо решить как получить стринговове значение одного из перечислений
-        StepTracker stepTrackerMain = main.stepTrackerinMain;
-        stepTrackerMain.monthDataHashMap.get(month); // и это поебень*/
 
 
     }
