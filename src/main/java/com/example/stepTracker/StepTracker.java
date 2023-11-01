@@ -1,17 +1,16 @@
 package com.example.stepTracker;
 
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
+import java.io.*;
 import java.util.HashMap;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 
 
-public class StepTracker {
-    Gson gson = new Gson();
+public class StepTracker implements Serializable {
+    //Gson gson = new Gson();
+    //Type hashMapType = new TypeToken<HashMap<String, MonthDate>>() {}.getType();
 
-    //Type monthDateType = new TypeToken<MonthDate>() {}.getType();
 
     /*public static void main(String[] args) { //тестирование
         StepTracker stepTracker = new StepTracker();
@@ -28,6 +27,7 @@ public class StepTracker {
 
     public HashMap<Integer, MonthDate> monthDataHashMap = new HashMap<>();
 
+
     public StepTracker() { //Конструктор заполняющий hashMap объектами MonthDate
         for (int i = 1; i <= 12; i++) {
             monthDataHashMap.put(i, new MonthDate());
@@ -36,15 +36,16 @@ public class StepTracker {
         }
     }
 
-    class MonthDate {
+    class MonthDate implements Serializable {
+
         private String month;
         private int data;
         private int steps;
         int[][] monthDataArray = new int[30][2];
 
+
         public MonthDate() {
         }
-
 
         public void arrayFilling(int data, int steps) { //Заполняет массив датой и количеством шагов
             monthDataArray[data - 1][0] = data;
@@ -86,22 +87,86 @@ public class StepTracker {
             this.monthDataArray = monthDataArray;
         }
     }
-    Type hashMapType = new TypeToken<HashMap<String, MonthDate>>() {}.getType();
-    public String hashMapConversionToJson() { //Сериализация hash map в json
+    /*public String hashMapConversionToJson() { //Сериализация hash map в json через библиотеку gson
         String jsonMap = gson.toJson(monthDataHashMap);
         return jsonMap;
     }
 
-    public HashMap hashMapConversionFromJson() { //Десериализация hash map из json
+    public HashMap hashMapConversionFromJson() { //Десериализация hash map из json через библиотеку gson
 
         String json = hashMapConversionToJson();
         HashMap<Integer, MonthDate> monthDateHashMapFromJson = gson.fromJson(json, HashMap.class);
         return monthDateHashMapFromJson;
+    }*/
+
+    public void hashMapSerializable() {
+        try {
+            // Создание объекта ObjectOutputStream для записи в файл или поток
+            FileOutputStream fileOutputStream = new FileOutputStream("data.bin");
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+
+            // Сериализация HashMap
+            outputStream.writeObject(monthDataHashMap);
+
+            // Закрытие потока
+            outputStream.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public static void main(String[] args) {
+    public void hashMapDeserializable() {
+
+
+        try {
+            // Создание объекта ObjectInputStream для чтения из файла или потока
+            FileInputStream fileInputStream = new FileInputStream("data.bin");
+            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+
+            // Десериализация HashMap
+            HashMap<Integer, MonthDate> deserializedHashMap = (HashMap<Integer, MonthDate>) inputStream.readObject();
+
+            // Закрытие потока
+            inputStream.close();
+            fileInputStream.close();
+            // Использование десериализованной HashMap
+            /*MonthDate deserializedObject = deserializedHashMap.get(1);
+            System.out.println("Array elements:");
+            for (int[] element : deserializedObject.getMonthDataArray()) {
+                System.out.println(element);
+            }*/
+            int[][] arr = deserializedHashMap.get(1).monthDataArray;
+
+            for (int[] ints : arr) {
+                for (int anInt : ints) {
+                    System.out.print(anInt + " ");
+                }
+                System.out.println();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*public void useOfDeserialisedHashmap() {
+        // Использование десериализованной HashMap
+        MonthDate deserializedObject = deserializedHashMap.get("key");
+        System.out.println("Array elements:");
+        for (String element : deserializedObject.getArray()) {
+            System.out.println(element);
+        }
+
+    }*/
+
+
+    public static void main(String[] args) { // Test
         StepTracker stepTracker = new StepTracker();
         stepTracker.monthDataHashMap.get(1).arrayFilling(3, 90);
+        stepTracker.monthDataHashMap.get(1).arrayFilling(4, 95);
+        stepTracker.monthDataHashMap.get(1).arrayFilling(5, 100);
+        System.out.println("!!!!!!");
         /*int[][] arr = stepTracker.monthDataHashMap.get(1).monthDataArray;
 
         for (int[] ints : arr) {
@@ -110,11 +175,9 @@ public class StepTracker {
             }
             System.out.println();
         }*/
-        String json = stepTracker.hashMapConversionToJson();
-        System.out.println(json);
+        stepTracker.hashMapSerializable();
+        stepTracker.hashMapDeserializable();
 
-        HashMap hashMapFromJson = stepTracker.hashMapConversionFromJson();
-        System.out.println(hashMapFromJson);
 
     }
 
