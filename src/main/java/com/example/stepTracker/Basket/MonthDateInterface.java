@@ -1,4 +1,4 @@
-package com.example.stepTracker;
+package com.example.stepTracker.Basket;
 
 public interface MonthDateInterface {
     void creatingAnArrayOfDatesAndSteps();

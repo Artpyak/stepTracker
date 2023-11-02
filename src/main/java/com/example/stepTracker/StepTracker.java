@@ -1,31 +1,12 @@
 package com.example.stepTracker;
 
 
-import java.io.*;
+import java.io.Serializable;
 import java.util.HashMap;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 
 
 public class StepTracker implements Serializable {
-    //Gson gson = new Gson();
-    //Type hashMapType = new TypeToken<HashMap<String, MonthDate>>() {}.getType();
-
-
-    /*public static void main(String[] args) { //тестирование
-        StepTracker stepTracker = new StepTracker();
-        stepTracker.monthDataHashMap.get(1).arrayFilling(3, 90);
-        int[][] arr = stepTracker.monthDataHashMap.get(1).monthDataArray;
-
-        for (int[] ints : arr) {
-            for (int anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
-        }
-    }*/
-
-    public HashMap<Integer, MonthDate> monthDataHashMap = new HashMap<>();
+    HashMap<Integer, MonthDate> monthDataHashMap = new HashMap<>();
 
 
     public StepTracker() { //Конструктор заполняющий hashMap объектами MonthDate
@@ -36,12 +17,12 @@ public class StepTracker implements Serializable {
         }
     }
 
-    class MonthDate implements Serializable {
+    class MonthDate implements Serializable { //Класс для хранения переменных: месяца, даты, шагов и массива
 
         private String month;
         private int data;
         private int steps;
-        int[][] monthDataArray = new int[30][2];
+        private int[][] monthDataArray = new int[30][2];
 
 
         public MonthDate() {
@@ -99,7 +80,7 @@ public class StepTracker implements Serializable {
         return monthDateHashMapFromJson;
     }*/
 
-    public void hashMapSerializable() {
+    /*public void hashMapSerializable() {
         try {
             // Создание объекта ObjectOutputStream для записи в файл или поток
             FileOutputStream fileOutputStream = new FileOutputStream("data.bin");
@@ -115,8 +96,8 @@ public class StepTracker implements Serializable {
             e.printStackTrace();
         }
 
-    }
-
+    }*/
+    /*HashMap<Integer, MonthDate> deserializedHashMap;
     public void hashMapDeserializable() {
 
 
@@ -126,29 +107,23 @@ public class StepTracker implements Serializable {
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
 
             // Десериализация HashMap
-            HashMap<Integer, MonthDate> deserializedHashMap = (HashMap<Integer, MonthDate>) inputStream.readObject();
+            deserializedHashMap = (HashMap<Integer, MonthDate>) inputStream.readObject();
 
             // Закрытие потока
             inputStream.close();
             fileInputStream.close();
             // Использование десериализованной HashMap
-            /*MonthDate deserializedObject = deserializedHashMap.get(1);
+            *//*MonthDate deserializedObject = deserializedHashMap.get(1);
             System.out.println("Array elements:");
             for (int[] element : deserializedObject.getMonthDataArray()) {
                 System.out.println(element);
-            }*/
-            int[][] arr = deserializedHashMap.get(1).monthDataArray;
+            }*//*
 
-            for (int[] ints : arr) {
-                for (int anInt : ints) {
-                    System.out.print(anInt + " ");
-                }
-                System.out.println();
-            }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
+
+    }*/
 
     /*public void useOfDeserialisedHashmap() {
         // Использование десериализованной HashMap
@@ -161,25 +136,33 @@ public class StepTracker implements Serializable {
     }*/
 
 
-    public static void main(String[] args) { // Test
+    /*public static void main(String[] args) { // Test
         StepTracker stepTracker = new StepTracker();
         stepTracker.monthDataHashMap.get(1).arrayFilling(3, 90);
         stepTracker.monthDataHashMap.get(1).arrayFilling(4, 95);
         stepTracker.monthDataHashMap.get(1).arrayFilling(5, 100);
         System.out.println("!!!!!!");
-        /*int[][] arr = stepTracker.monthDataHashMap.get(1).monthDataArray;
+        *//*int[][] arr = stepTracker.monthDataHashMap.get(1).monthDataArray;
 
         for (int[] ints : arr) {
             for (int anInt : ints) {
                 System.out.print(anInt + " ");
             }
             System.out.println();
-        }*/
+        }*//*
         stepTracker.hashMapSerializable();
         stepTracker.hashMapDeserializable();
 
+        int[][] arr = stepTracker.deserializedHashMap.get(1).monthDataArray;
+        System.out.println(stepTracker.deserializedHashMap.get(1).month);
+        for (int[] ints : arr) {
+            for (int anInt : ints) {
+                System.out.print(anInt + " ");
+            }
+            System.out.println();
+        }
 
-    }
+    }*/
 
 }
 

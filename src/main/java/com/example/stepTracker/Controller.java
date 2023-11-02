@@ -28,7 +28,8 @@ public class Controller {
     }
 
 
-    public void actionMenuSelection() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException { //Определение необходимого подпункта меню и соответствующего действия
+    //Определение необходимого подпункта меню и соответствующего действия
+    public void actionMenuSelection() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Object actionMenuSelection = ActionMenuSelection.getTemplateByCode(scanningUserData()).getMenuItemsEnum().getMenuItems();
         System.out.println(actionMenuSelection);
     }
