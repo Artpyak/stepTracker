@@ -20,7 +20,6 @@ com\example\stepTracker\Months.class
 com\example\stepTracker\Basket\NumberOfSteps.class
 com\example\stepTracker\menuItems\MenuItems.class
 com\example\stepTracker\messageToTheConsole\ConsoleMessageTemplate.class
-com\example\stepTracker\menuItems\impl\NumberOfSteps$DateAndSteps.class
 com\example\stepTracker\Controller.class
 com\example\stepTracker\messageToTheConsole\impl\MenuMessageTemplateToConsole.class
 com\example\stepTracker\MonthMap.class

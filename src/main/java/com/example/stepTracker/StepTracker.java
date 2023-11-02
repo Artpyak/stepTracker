@@ -1,19 +1,46 @@
 package com.example.stepTracker;
 
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.HashMap;
 
 
 public class StepTracker implements Serializable {
     HashMap<Integer, MonthDate> monthDataHashMap = new HashMap<>();
 
+    public StepTracker() { //Конструктор заполняющий hashMap объектами MonthDate и проверяющий наличие файла с hashmap
+        if (fileExists()) {
+            loadHashMapFromFile();
+        } else {
+            for (int i = 1; i <= 12; i++) {
+                monthDataHashMap.put(i, new MonthDate());
+                String month = String.valueOf(Months.getTemplateByCode(i));
+                monthDataHashMap.get(i).setMonth(month);
+            }
+            //saveHashMapToFile(); // Пока я не уверен что тут надо сохранять hashMap
+        }
 
-    public StepTracker() { //Конструктор заполняющий hashMap объектами MonthDate
-        for (int i = 1; i <= 12; i++) {
-            monthDataHashMap.put(i, new MonthDate());
-            String month = String.valueOf(Months.getTemplateByCode(i));
-            monthDataHashMap.get(i).setMonth(month);
+
+    }
+    private boolean fileExists() {
+        File file = new File("data.bin");
+        return file.exists();
+    }
+    private void saveHashMapToFile() {
+        try (FileOutputStream fos = new FileOutputStream("data.bin");
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            oos.writeObject(monthDataHashMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadHashMapFromFile() {
+        try (FileInputStream fis = new FileInputStream("data.bin");
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+            monthDataHashMap = (HashMap<Integer, MonthDate>) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -12,21 +12,17 @@ public class Controller {
 
     public Integer scanningUserData() {  //(проверить на исключения) Вызов меню и сканирование выбора пункта меню.
 
-
         System.out.println(menuMessageTemplateToConsole.getTemplate());
         int userInput = scanner.nextInt();
-
 
         while (userInput > 1 && userInput < 4) {             //обработка некорректного запроса
             PrintingAnErrorMessage printingAnErrorMessage = new PrintingAnErrorMessage();
             System.out.println(printingAnErrorMessage.getTemplate());
             System.out.println(menuMessageTemplateToConsole.getTemplate());
             userInput = scanner.nextInt();
-
         }
         return userInput;
     }
-
 
     //Определение необходимого подпункта меню и соответствующего действия
     public void actionMenuSelection() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {

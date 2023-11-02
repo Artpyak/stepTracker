@@ -1,7 +1,7 @@
 package com.example.stepTracker.menuItems.impl;
 
 public interface DateAndStepsInterface {
-    String getMonth();
+    int getMonthNumber();
 
     int getDay();
 
