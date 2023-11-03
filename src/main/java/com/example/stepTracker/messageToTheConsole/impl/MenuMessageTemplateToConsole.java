@@ -3,7 +3,6 @@ package com.example.stepTracker.messageToTheConsole.impl;
 import com.example.stepTracker.messageToTheConsole.ConsoleMessageTemplate;
 
 public class MenuMessageTemplateToConsole implements ConsoleMessageTemplate {
-    @Override
     public String getTemplate() {
         return "Выберите номер действия:\n" +
                 "1. Ввести количество шагов за определённый день;\n" +

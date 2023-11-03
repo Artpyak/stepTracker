@@ -1,27 +1,31 @@
 package com.example.stepTracker.menuItems.impl;
 
+import com.example.stepTracker.HashMapDeserializable;
+import com.example.stepTracker.HashMapSerializable;
+import com.example.stepTracker.StepTracker;
 import com.example.stepTracker.menuItems.MenuItems;
+import com.example.stepTracker.messageToTheConsole.impl.MessageAboutSavingData;
 import com.example.stepTracker.messageToTheConsole.impl.MonthEntryRequest;
 import com.example.stepTracker.messageToTheConsole.impl.RequestForDayEntry;
 import com.example.stepTracker.messageToTheConsole.impl.RequestToEnterTheNumberOfSteps;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class NumberOfSteps implements MenuItems {
+public class NumberOfSteps implements MenuItems, Serializable {
 
     int steps;
-    int day;
+    int data;
     int monthNumber;
+
+    private static final long serialVersionUID = 1L;
+    private java.util.HashMap<Integer, StepTracker.MonthDate> hashMap;
 
     @Override
     public Object getMenuItems() {
         menuItemRetrieval();
         databaseFilling();
         return null; //Исправить поебень с null
-    }
-
-    public void databaseFilling() { //Определяет месяц для заполнения hashMap
-
     }
 
     public void menuItemRetrieval() { //Подпункт меню сканирующий: месяц, дату и шаги.
@@ -33,51 +37,18 @@ public class NumberOfSteps implements MenuItems {
         System.out.println(monthEntryRequest.getTemplate());
         monthNumber = scanner.nextInt();
         System.out.println(requestForDayEntry.getTemplate());
-        day = scanner.nextInt();
+        data = scanner.nextInt();
         System.out.println(requestToEnterTheNumberOfSteps.getTemplate());
         steps = scanner.nextInt();
     }
 
-    /*public DateAndSteps menuItemRetrieval() { //Подпункт меню сканирующий: месяц, дату и шаги. Возвращает объект с данными.
-        MonthEntryRequest monthEntryRequest = new MonthEntryRequest();
-        RequestForDayEntry requestForDayEntry = new RequestForDayEntry();
-        RequestToEnterTheNumberOfSteps requestToEnterTheNumberOfSteps = new RequestToEnterTheNumberOfSteps();
-        Scanner scanner = new Scanner(System.in);
+    public void databaseFilling() { //Определяет месяц для заполнения hashMap
+        hashMap = HashMapDeserializable.deserializable();
+        hashMap.get(monthNumber).arrayFilling(data, steps);
+        HashMapSerializable.Serializable(hashMap);
 
-        System.out.println(monthEntryRequest.getTemplate());
-        int monthNumber = scanner.nextInt();
-        System.out.println(requestForDayEntry.getTemplate());
-        int day = scanner.nextInt();
-        System.out.println(requestToEnterTheNumberOfSteps.getTemplate());
-        int steps = scanner.nextInt();
-        return new DateAndSteps(monthNumber, day, steps);
-    }*/
+        MessageAboutSavingData messageAboutSavingData = new MessageAboutSavingData();
+        System.out.println(messageAboutSavingData.getTemplate());
+    }
 
-
-    /*public class DateAndSteps implements DateAndStepsInterface { //Класс для сохранения и передачи: месяца, даты и количества шагов
-        int monthNumber;
-        int day;
-        int steps;
-
-        public DateAndSteps(int monthNumber, int day, int steps) {
-            this.monthNumber = monthNumber;
-            this.day = day;
-            this.steps = steps;
-        }
-
-        @Override
-        public int getMonthNumber() {
-            return monthNumber;
-        }
-
-        @Override
-        public int getDay() {
-            return day;
-        }
-
-        @Override
-        public int getSteps() {
-            return steps;
-        }
-    }*/
 }

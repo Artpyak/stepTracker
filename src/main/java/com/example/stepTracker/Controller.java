@@ -10,6 +10,7 @@ public class Controller {
     MenuMessageTemplateToConsole menuMessageTemplateToConsole = new MenuMessageTemplateToConsole(); // Создание объекта класса вызывающищего меню в консоль.
     Scanner scanner = new Scanner(System.in); // Сканер
 
+
     public Integer scanningUserData() {  //(проверить на исключения) Вызов меню и сканирование выбора пункта меню.
 
         System.out.println(menuMessageTemplateToConsole.getTemplate());
@@ -30,10 +31,4 @@ public class Controller {
         System.out.println(actionMenuSelection);
     }
 
-    /*public static void main(String[] args) { //Test
-        System.out.println(ActionMenuSelection.getTemplateByCode(1));
-        String s = String.valueOf(ActionMenuSelection.getTemplateByCode(1));
-        String s2 = s.toLowerCase();
-        System.out.println(s2);
-    }*/
 }

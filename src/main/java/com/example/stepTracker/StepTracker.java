@@ -6,54 +6,38 @@ import java.util.HashMap;
 
 
 public class StepTracker implements Serializable {
+    private static final long serialVersionUID = 1L;
     HashMap<Integer, MonthDate> monthDataHashMap = new HashMap<>();
 
     public StepTracker() { //Конструктор заполняющий hashMap объектами MonthDate и проверяющий наличие файла с hashmap
         if (fileExists()) {
-            loadHashMapFromFile();
+            monthDataHashMap = HashMapDeserializable.deserializable();
         } else {
             for (int i = 1; i <= 12; i++) {
                 monthDataHashMap.put(i, new MonthDate());
                 String month = String.valueOf(Months.getTemplateByCode(i));
                 monthDataHashMap.get(i).setMonth(month);
             }
-            //saveHashMapToFile(); // Пока я не уверен что тут надо сохранять hashMap
+            //saveHashMapToFile();
+            HashMapSerializable.Serializable(monthDataHashMap);
         }
 
 
     }
+
     private boolean fileExists() {
-        File file = new File("data.bin");
+        File file = new File("arrayDataMap.bin");
         return file.exists();
     }
-    private void saveHashMapToFile() {
-        try (FileOutputStream fos = new FileOutputStream("data.bin");
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(monthDataHashMap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    private void loadHashMapFromFile() {
-        try (FileInputStream fis = new FileInputStream("data.bin");
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-            monthDataHashMap = (HashMap<Integer, MonthDate>) ois.readObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    public class MonthDate implements Serializable { //Класс для хранения переменных: месяца, даты, шагов и массива
 
-    class MonthDate implements Serializable { //Класс для хранения переменных: месяца, даты, шагов и массива
-
+        private static final long serialVersionUID = 1L;
         private String month;
         private int data;
         private int steps;
         private int[][] monthDataArray = new int[30][2];
 
-
-        public MonthDate() {
-        }
 
         public void arrayFilling(int data, int steps) { //Заполняет массив датой и количеством шагов
             monthDataArray[data - 1][0] = data;
@@ -95,101 +79,6 @@ public class StepTracker implements Serializable {
             this.monthDataArray = monthDataArray;
         }
     }
-    /*public String hashMapConversionToJson() { //Сериализация hash map в json через библиотеку gson
-        String jsonMap = gson.toJson(monthDataHashMap);
-        return jsonMap;
-    }
-
-    public HashMap hashMapConversionFromJson() { //Десериализация hash map из json через библиотеку gson
-
-        String json = hashMapConversionToJson();
-        HashMap<Integer, MonthDate> monthDateHashMapFromJson = gson.fromJson(json, HashMap.class);
-        return monthDateHashMapFromJson;
-    }*/
-
-    /*public void hashMapSerializable() {
-        try {
-            // Создание объекта ObjectOutputStream для записи в файл или поток
-            FileOutputStream fileOutputStream = new FileOutputStream("data.bin");
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
-
-            // Сериализация HashMap
-            outputStream.writeObject(monthDataHashMap);
-
-            // Закрытие потока
-            outputStream.close();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-    /*HashMap<Integer, MonthDate> deserializedHashMap;
-    public void hashMapDeserializable() {
-
-
-        try {
-            // Создание объекта ObjectInputStream для чтения из файла или потока
-            FileInputStream fileInputStream = new FileInputStream("data.bin");
-            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-
-            // Десериализация HashMap
-            deserializedHashMap = (HashMap<Integer, MonthDate>) inputStream.readObject();
-
-            // Закрытие потока
-            inputStream.close();
-            fileInputStream.close();
-            // Использование десериализованной HashMap
-            *//*MonthDate deserializedObject = deserializedHashMap.get(1);
-            System.out.println("Array elements:");
-            for (int[] element : deserializedObject.getMonthDataArray()) {
-                System.out.println(element);
-            }*//*
-
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-    }*/
-
-    /*public void useOfDeserialisedHashmap() {
-        // Использование десериализованной HashMap
-        MonthDate deserializedObject = deserializedHashMap.get("key");
-        System.out.println("Array elements:");
-        for (String element : deserializedObject.getArray()) {
-            System.out.println(element);
-        }
-
-    }*/
-
-
-    /*public static void main(String[] args) { // Test
-        StepTracker stepTracker = new StepTracker();
-        stepTracker.monthDataHashMap.get(1).arrayFilling(3, 90);
-        stepTracker.monthDataHashMap.get(1).arrayFilling(4, 95);
-        stepTracker.monthDataHashMap.get(1).arrayFilling(5, 100);
-        System.out.println("!!!!!!");
-        *//*int[][] arr = stepTracker.monthDataHashMap.get(1).monthDataArray;
-
-        for (int[] ints : arr) {
-            for (int anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
-        }*//*
-        stepTracker.hashMapSerializable();
-        stepTracker.hashMapDeserializable();
-
-        int[][] arr = stepTracker.deserializedHashMap.get(1).monthDataArray;
-        System.out.println(stepTracker.deserializedHashMap.get(1).month);
-        for (int[] ints : arr) {
-            for (int anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
-        }
-
-    }*/
 
 }
 

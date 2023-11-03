@@ -7,7 +7,7 @@ D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\Basket\MonthDat
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\messageToTheConsole\impl\RequestForDayEntry.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\menuItems\impl\Statistics.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\HashMapDeserializable.java
-D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\MonthMap.java
+D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\Basket\MonthMap.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\Months.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\menuItems\impl\DailyGoal.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\Basket\NumberOfSteps.java
@@ -22,4 +22,5 @@ D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\HashMapSerializ
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\StepTracker.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\messageToTheConsole\impl\RequestToEnterTheNumberOfSteps.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\menuItems\impl\NumberOfSteps.java
+D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\messageToTheConsole\impl\MessageAboutSavingData.java
 D:\javaProject\stapTracker\src\main\java\com\example\stepTracker\menuItems\impl\Exit.java

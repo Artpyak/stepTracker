@@ -4,11 +4,13 @@ com\example\stepTracker\menuItems\impl\Exit.class
 com\example\stepTracker\messageToTheConsole\impl\MonthEntryRequest.class
 com\example\stepTracker\menuItems\impl\NumberOfSteps.class
 com\example\stepTracker\Basket\StepsForToday.class
+com\example\stepTracker\Basket\MonthMap.class
 com\example\stepTracker\HashMapSerializable.class
 com\example\stepTracker\messageToTheConsole\impl\RequestToEnterTheNumberOfSteps.class
 com\example\stepTracker\StepTracker$MonthDate.class
 com\example\stepTracker\menuItems\impl\Statistics.class
 com\example\stepTracker\ActionMenuSelection.class
+com\example\stepTracker\messageToTheConsole\impl\MessageAboutSavingData.class
 com\example\stepTracker\HashMapDeserializable.class
 com\example\stepTracker\Main.class
 com\example\stepTracker\menuItems\impl\DateAndStepsInterface.class
@@ -22,5 +24,4 @@ com\example\stepTracker\menuItems\MenuItems.class
 com\example\stepTracker\messageToTheConsole\ConsoleMessageTemplate.class
 com\example\stepTracker\Controller.class
 com\example\stepTracker\messageToTheConsole\impl\MenuMessageTemplateToConsole.class
-com\example\stepTracker\MonthMap.class
 com\example\stepTracker\Basket\MessageToTheConsole.class

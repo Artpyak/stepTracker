@@ -3,24 +3,20 @@ package com.example.stepTracker;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class HashMapSerializable {
-    private static HashMap<Integer, StepTracker.MonthDate> HashMap;
+public class HashMapSerializable implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    public HashMapSerializable(java.util.HashMap<Integer, StepTracker.MonthDate> hashMap) {
-        HashMap = hashMap;
-    }
-
-
-    static void Serializable() {
+    public static void Serializable(HashMap<Integer, StepTracker.MonthDate> hashMap) {
         try {
             // Создание объекта ObjectOutputStream для записи в файл или поток
-            FileOutputStream fileOutputStream = new FileOutputStream("data.bin");
+            FileOutputStream fileOutputStream = new FileOutputStream("arrayDataMap.bin");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
 
             // Сериализация HashMap
-            outputStream.writeObject(HashMap);
+            outputStream.writeObject(hashMap);
 
             // Закрытие потока
             outputStream.close();
