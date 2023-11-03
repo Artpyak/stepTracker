@@ -6,6 +6,6 @@ public class MessageAboutSavingData implements ConsoleMessageTemplate {
 
     @Override
     public String getTemplate() {
-        return "Данные сохранены";
+        return "Данные сохранены. \n";
     }
 }

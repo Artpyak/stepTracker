@@ -13,7 +13,6 @@ com\example\stepTracker\ActionMenuSelection.class
 com\example\stepTracker\messageToTheConsole\impl\MessageAboutSavingData.class
 com\example\stepTracker\HashMapDeserializable.class
 com\example\stepTracker\Main.class
-com\example\stepTracker\menuItems\impl\DateAndStepsInterface.class
 com\example\stepTracker\StepTracker.class
 com\example\stepTracker\menuItems\impl\DailyGoal.class
 com\example\stepTracker\Basket\DataScans.class

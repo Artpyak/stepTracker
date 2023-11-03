@@ -22,13 +22,12 @@ public class NumberOfSteps implements MenuItems, Serializable {
     private java.util.HashMap<Integer, StepTracker.MonthDate> hashMap;
 
     @Override
-    public Object getMenuItems() {
+    public void getMenuItems() {
         menuItemRetrieval();
         databaseFilling();
-        return null; //Исправить поебень с null
     }
 
-    public void menuItemRetrieval() { //Подпункт меню сканирующий: месяц, дату и шаги.
+    public void menuItemRetrieval() throws NullPointerException { //Подпункт меню сканирующий: месяц, дату и шаги.
         MonthEntryRequest monthEntryRequest = new MonthEntryRequest();
         RequestForDayEntry requestForDayEntry = new RequestForDayEntry();
         RequestToEnterTheNumberOfSteps requestToEnterTheNumberOfSteps = new RequestToEnterTheNumberOfSteps();
