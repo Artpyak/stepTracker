@@ -5,6 +5,7 @@ com\example\stepTracker\messageToTheConsole\impl\MonthEntryRequest.class
 com\example\stepTracker\menuItems\impl\NumberOfSteps.class
 com\example\stepTracker\Basket\StepsForToday.class
 com\example\stepTracker\Basket\MonthMap.class
+com\example\stepTracker\messageToTheConsole\impl\MessageAboutTheChoiceOfMonth.class
 com\example\stepTracker\HashMapSerializable.class
 com\example\stepTracker\messageToTheConsole\impl\RequestToEnterTheNumberOfSteps.class
 com\example\stepTracker\StepTracker$MonthDate.class

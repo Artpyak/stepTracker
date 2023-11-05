@@ -14,12 +14,12 @@ import java.util.Scanner;
 
 public class NumberOfSteps implements MenuItems, Serializable {
 
-    int steps;
-    int data;
-    int monthNumber;
+    private int steps;
+    private int data;
+    private int monthNumber;
 
     private static final long serialVersionUID = 1L;
-    private java.util.HashMap<Integer, StepTracker.MonthDate> hashMap;
+    private java.util.HashMap<Integer, StepTracker.MonthDate> arrayDataMap;
 
     @Override
     public void getMenuItems() {
@@ -42,9 +42,9 @@ public class NumberOfSteps implements MenuItems, Serializable {
     }
 
     public void databaseFilling() { //Определяет месяц для заполнения hashMap
-        hashMap = HashMapDeserializable.deserializable();
-        hashMap.get(monthNumber).arrayFilling(data, steps);
-        HashMapSerializable.Serializable(hashMap);
+        arrayDataMap = HashMapDeserializable.deserializable();
+        arrayDataMap.get(monthNumber).arrayFilling(data, steps);
+        HashMapSerializable.Serializable(arrayDataMap);
 
         MessageAboutSavingData messageAboutSavingData = new MessageAboutSavingData();
         System.out.println(messageAboutSavingData.getTemplate());

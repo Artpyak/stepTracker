@@ -13,12 +13,23 @@ public class StepTracker implements Serializable {
         if (fileExists()) {
             monthDataHashMap = HashMapDeserializable.deserializable();
         } else {
+
             for (int i = 1; i <= 12; i++) {
                 monthDataHashMap.put(i, new MonthDate());
                 String month = String.valueOf(Months.getTemplateByCode(i));
-                monthDataHashMap.get(i).setMonth(month);
+
+                String firstLetter = month.substring(0, 1); // Получаем первую букву
+                String remainingLetters = month.substring(1).toLowerCase(); // Преобразуем остальные буквы в строчные
+                String resultMonth = firstLetter + remainingLetters; // Объединяем первую букву с остальными
+
+                monthDataHashMap.get(i).setMonth(resultMonth);
+                int[][] arr = new int[0][];
+                for (int k = 0, j = 1; k < 30; k++, j++) {
+                    arr = monthDataHashMap.get(i).getMonthDataArray();
+                    arr[k][0] = j;
+                }
+                monthDataHashMap.get(i).setMonthDataArray(arr);
             }
-            //saveHashMapToFile();
             HashMapSerializable.Serializable(monthDataHashMap);
         }
 
@@ -34,16 +45,18 @@ public class StepTracker implements Serializable {
 
         private static final long serialVersionUID = 1L;
         private String month;
-        private int data;
-        private int steps;
         private int[][] monthDataArray = new int[30][2];
 
 
         public void arrayFilling(int data, int steps) { //Заполняет массив датой и количеством шагов
-            monthDataArray[data - 1][0] = data;
-            monthDataArray[data - 1][1] = steps;
-            setData(data);
-            setSteps(steps);
+
+            try {
+                if (data == monthDataArray[data - 1][0]) {
+                    monthDataArray[data - 1][1] = steps;
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e + "data не совпадает с днём месяца в массиве");
+            }
         }
 
 
@@ -53,22 +66,6 @@ public class StepTracker implements Serializable {
 
         public void setMonth(String month) {
             this.month = month;
-        }
-
-        public int getData() {
-            return data;
-        }
-
-        public void setData(int data) {
-            this.data = data;
-        }
-
-        public int getSteps() {
-            return steps;
-        }
-
-        public void setSteps(int steps) {
-            this.steps = steps;
         }
 
         public int[][] getMonthDataArray() {
