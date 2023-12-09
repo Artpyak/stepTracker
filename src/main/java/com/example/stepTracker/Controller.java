@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class Controller {
     MenuMessageTemplateToConsole menuMessageTemplateToConsole = new MenuMessageTemplateToConsole(); // Создание объекта класса вызывающищего меню в консоль.
     Scanner scanner = new Scanner(System.in); // Сканер
-    int targetNumberOfSteps = 10000; //Целевое количество шагов
-
     public Integer scanningUserData() {  //(проверить на исключения) Вызов меню и сканирование выбора пункта меню.
         System.out.println(menuMessageTemplateToConsole.getTemplate());
         int userInput = scanner.nextInt();
@@ -23,11 +21,17 @@ public class Controller {
         return userInput;
     }
 
+    public void setMenuMessageTemplateToConsole(MenuMessageTemplateToConsole menuMessageTemplateToConsole) {
+        this.menuMessageTemplateToConsole = menuMessageTemplateToConsole;
+    }
+
     //Определение необходимого подпункта меню и соответствующего действия
     public void actionMenuSelection() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        TargetNumberOfSteps.nullCheck();
         boolean returnToMainMenu = true; // Надо сделать так чтоб при выборе подпункта выход цикл завершался
         while (returnToMainMenu) {
             ActionMenuSelection.getTemplateByCode(scanningUserData()).getMenuItemsEnum().getMenuItems();
+
         }
     }
 

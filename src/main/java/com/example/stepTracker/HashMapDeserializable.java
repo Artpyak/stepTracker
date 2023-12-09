@@ -24,13 +24,6 @@ public class HashMapDeserializable implements Serializable {
             // Закрытие потока
             inputStream.close();
             fileInputStream.close();
-            // Использование десериализованной HashMap
-            /*MonthDate deserializedObject = deserializedHashMap.get(1);
-            System.out.println("Array elements:");
-            for (int[] element : deserializedObject.getMonthDataArray()) {
-                System.out.println(element);
-            }*/
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }

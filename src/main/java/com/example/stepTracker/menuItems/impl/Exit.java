@@ -5,5 +5,7 @@ import com.example.stepTracker.menuItems.MenuItems;
 public class Exit implements MenuItems {
     @Override
     public void getMenuItems() {
+        System.exit(0);
     }
+
 }
